@@ -20,7 +20,7 @@ function decrease_quality(item) {
     return;
   }
   if (item.quality > 0) {
-    item.quality--;
+      item.quality--;
   }
 }
 function update_quality() {
