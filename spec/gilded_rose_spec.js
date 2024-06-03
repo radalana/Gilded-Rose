@@ -1,4 +1,9 @@
 describe("Gilded Rose", function() {
+  it("lowers quality refactor", function() {
+    items = [ new Item("foo", 0, 1) ];
+    decrease_quality(items[0]);
+    expect(items[0].quality).toEqual(0);
+  });
 
   it("lowers quality", function() {
     items = [ new Item("foo", 0, 1) ];
@@ -11,9 +16,9 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(0);
   });
   it("lowers quality by 2 after sell in day", function() {
-    items = [ new Item("foo", -1, 2) ];
+    items = [ new Item("foo", -1, 3) ];
     update_quality();
-    expect(items[0].quality).toEqual(0);
+    expect(items[0].quality).toEqual(1);
   });
   it("min boundary: lowers quality by 2 after sell in day", function() {
     items = [ new Item("foo", -1, 1) ];
