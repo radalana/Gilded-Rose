@@ -1,10 +1,4 @@
 describe("Gilded Rose", function() {
-  it("lowers quality refactor", function() {
-    items = [ new Item("foo", 0, 1) ];
-    decrease_quality(items[0]);
-    expect(items[0].quality).toEqual(0);
-  });
-
   it("lowers quality", function() {
     items = [ new Item("foo", 0, 1) ];
     update_quality();
@@ -78,6 +72,19 @@ describe("Gilded Rose", function() {
     update_quality();
     expect(items[0].quality).toEqual(80);
     expect(items[0].sell_in).toEqual(0);
+  });
+
+
+  //
+  it("lowers quality refactor", function() {
+    items = [ new Item("foo", 0, 1) ];
+    decrease_quality(items[0]);
+    expect(items[0].quality).toEqual(0);
+  });
+  it("lowers quality refactor by Sulfuras'", function() {
+    items = [ new Item("Sulfuras", 0, 80) ];
+    decrease_quality(items[0]);
+    expect(items[0].quality).toEqual(80);
   });
 });
 
