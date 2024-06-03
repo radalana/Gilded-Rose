@@ -17,42 +17,42 @@ function update_quality() {
   for (var i = 0; i < items.length; i++) {
     if (items[i].name != 'Aged Brie' && items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (items[i].quality > 0) {
-        if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
+        if (items[i].name != 'Sulfuras, Hand of Ragnaros') {//decrease quality
           items[i].quality = items[i].quality - 1
         }
       }
-    } else {
-      if (items[i].quality < 50) {
-        items[i].quality = items[i].quality + 1
+    } else { //'Aged Brie' OR 'Backstage passes to a TAFKAL80ETC concert'
+      if (items[i].quality < 50) { 
+        items[i].quality = items[i].quality + 1 //increase quality 
         if (items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-          if (items[i].sell_in < 11) {
-            if (items[i].quality < 50) {
+          if (items[i].sell_in < 11) { // up 10th day
+            if (items[i].quality < 50) { //if less than 50 then inrease
               items[i].quality = items[i].quality + 1
             }
           }
-          if (items[i].sell_in < 6) {
-            if (items[i].quality < 50) {
-              items[i].quality = items[i].quality + 1
+          if (items[i].sell_in < 6) { //if left 5 days
+            if (items[i].quality < 50) { //check if max 50
+              items[i].quality = items[i].quality + 1 
             }
           }
         }
-      }
+      }// 50 max
     }
     if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      items[i].sell_in = items[i].sell_in - 1;
+      items[i].sell_in = items[i].sell_in - 1; //by all item decrease sell in days
     }
-    if (items[i].sell_in < 0) {
+    if (items[i].sell_in < 0) {// afte sell day
       if (items[i].name != 'Aged Brie') {
         if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
           if (items[i].quality > 0) {
             if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-              items[i].quality = items[i].quality - 1
+              items[i].quality = items[i].quality - 1 //'Aged Brie', 'Backstage passes to a TAFKAL80ETC concert'
             }
           }
-        } else {
+        } else {//'Backstage passes to a TAFKAL80ETC concert'
           items[i].quality = items[i].quality - items[i].quality
         }
-      } else {
+      } else { //Agied Brie after sell in day
         if (items[i].quality < 50) {
           items[i].quality = items[i].quality + 1
         }
