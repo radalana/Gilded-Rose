@@ -29,6 +29,10 @@ function update_backstage(backstage) {
     return;
   }
   const days = backstage.sell_in;
+  if (days <= 0) {
+      backstage.quality = 0;
+      return;
+  }
   if (!isQualityMax(backstage)) {
       backstage.quality++;
   }
