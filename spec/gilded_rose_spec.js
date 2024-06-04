@@ -98,6 +98,12 @@ describe("Gilded Rose", function() {
     update_aged_brie(items[0]);
     expect(items[0].quality).toEqual(50);
   });
+
+  it("function update_backstage more than 10 days", function() {
+    items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 11, 49) ];
+    update_backstage(items[0]);
+    expect(items[0].quality).toEqual(50);
+  });
   
 });
 
