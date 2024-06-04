@@ -31,7 +31,7 @@ function update_backstage(backstage) {
     backstage.quality++;
   }
 }
-function decrease_quality(item) {
+function update_quality(item) {
   const name = item.name;
   const sellBy = item.sell_in;
 
@@ -59,6 +59,6 @@ function decrease_quality(item) {
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
-    decrease_quality(items[i]);
+    update_quality(items[i]);
   }
 }

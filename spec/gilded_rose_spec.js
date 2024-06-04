@@ -76,19 +76,19 @@ describe("Gilded Rose", function() {
 
 
   //
-  it("decrease_quality refactor", function() {
+  it("update_quality refactor", function() {
     items = [ new Item("foo", 0, 1) ];
-    decrease_quality(items[0]);
+    update_quality(items[0]);
     expect(items[0].quality).toEqual(0);
   });
-  it("decrease_qualityy refactor by Sulfuras'", function() {
+  it("update_quality refactor by Sulfuras'", function() {
     items = [ new Item("Sulfuras", 0, 80) ];
-    decrease_quality(items[0]);
+    update_quality(items[0]);
     expect(items[0].quality).toEqual(80);
   });
-  it("decrease_qualityy 2 after sell in day'", function() {
+  it("update_quality 2 after sell in day'", function() {
     items = [ new Item("´foo", -1, 3) ];
-    decrease_quality(items[0]);
+    update_quality(items[0]);
     expect(items[0].quality).toEqual(1);
   });
 
