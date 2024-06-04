@@ -25,9 +25,11 @@ function update_backstage(backstage) {
   if (!backstage.name.startsWith('Backstage passes')) {
     return;
   }
-  const days = backstage.sellBy;
+  const days = backstage.sell_in;
   backstage.quality++;
-
+  if (days <= 10) {
+    backstage.quality++;
+  }
 }
 function decrease_quality(item) {
   const name = item.name;
@@ -57,11 +59,6 @@ function decrease_quality(item) {
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
-    
-      decrease_quality(items[i]);
-    
-    if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      items[i].sell_in = items[i].sell_in - 1; //by all item decrease sell in days
-    }
+    decrease_quality(items[i]);
   }
 }
