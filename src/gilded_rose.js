@@ -32,7 +32,6 @@ function update_aged_brie(brie) {
   if (brie.quality < 50) {
       brie.quality++;
   }
-  decrease_days(brie);
 }
 function updateRegularItem(item) {
   if (isQualityPositive(item)) { 
@@ -68,21 +67,33 @@ function update_backstage(backstage) {
     }
     }
   }
-  decrease_days(backstage);
+}
+
+function updateConjured(item) {
+  if (!item.name.startsWith('Conjured')) {
+    return;
+  }
+  if (isQualityPositive(item)) {
+    item.quality--;
+    if (isQualityPositive(item)) {
+      item.quality--;
+    }
+  }
 }
 function updateQualityAndSellIn(item) {
   const name = item.name;
   if (name.startsWith('Sulfuras')) {
       return;
-  }else if (name.startsWith('Aged Brie')) {
+  } else if (name.startsWith('Aged Brie')) {
       update_aged_brie(item);
-      return;
   }else if (name.startsWith('Backstage passes')) {
       update_backstage(item);
-      return;
-  }else {
-    updateRegularItem(item);
+  } else if (name.startsWith('Conjured')) {
+      updateConjured(item); 
+  } else {
+      updateRegularItem(item);
   }
+
   decrease_days(item);
 }
 function update() { 
