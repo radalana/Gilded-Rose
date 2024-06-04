@@ -43,7 +43,7 @@ function decrease_quality(item) {
     
   
 }
-function update_quality() { 
+function update() { 
   for (var i = 0; i < items.length; i++) {
     if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
             decrease_quality(items[i]);
