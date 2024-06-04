@@ -13,6 +13,9 @@ items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
 items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
 items.push(new Item('Conjured Mana Cake', 3, 6));
 
+function decrease_days(item) {
+    item.sell_in--;
+}
 function update_aged_brie(brie) {
   if (!brie.name.startsWith('Aged Brie')) {
     return;
@@ -20,6 +23,7 @@ function update_aged_brie(brie) {
   if (brie.quality < 50) {
       brie.quality++;
   }
+  
 }
 function isQualityMax(item) {
   return item.quality >= 50;
@@ -65,17 +69,17 @@ function update_quality(item) {
   }
   if (item.quality > 0) { 
       item.quality--;
+      if (sellBy < 0) {
+        if (item.quality > 0) { 
+          item.quality--;
+      }
+      }
   }
-  if (sellBy < 0) {
-    if (item.quality > 0) { 
-      item.quality--;
-  }
-  }
-    
   
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
-    update_quality(items[i]);
+      update_quality(items[i]);
+      decrease_days(items[i]);
   }
 }
