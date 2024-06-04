@@ -53,7 +53,7 @@ function update_backstage(backstage) {
   }
   decrease_days(backstage);
 }
-function update_quality(item) {
+function updateQualityAndSellIn(item) {
   const name = item.name;
   const sellBy = item.sell_in;
 
@@ -80,7 +80,6 @@ function update_quality(item) {
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
-      update_quality(items[i]);
-      
+      updateQualityAndSellIn(items[i]);
   }
 }
