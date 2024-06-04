@@ -16,18 +16,27 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 
 function decrease_quality(item) {
   const name = item.name;
+  const sellBy = item.sell_in;
+
   if (name.startsWith('Sulfuras')) {
     return;
   }
-  if (item.quality > 0) {
+  if (item.quality > 0) { 
       item.quality--;
   }
+  if (sellBy < 0) {
+    if (item.quality > 0) { 
+      item.quality--;
+  }
+  }
+    
+  
 }
-function update_quality() {
+function update_quality() { 
   for (var i = 0; i < items.length; i++) {
     if (items[i].name != 'Aged Brie' && items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (items[i].quality > 0) {
-            decrease_quality(items[0]);
+            decrease_quality(items[i]);
       }
     } else { //'Aged Brie' OR 'Backstage passes to a TAFKAL80ETC concert'
       if (items[i].quality < 50) { 
@@ -49,14 +58,9 @@ function update_quality() {
     if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
       items[i].sell_in = items[i].sell_in - 1; //by all item decrease sell in days
     }
-    if (items[i].sell_in < 0) {// afte sell day
+    
       if (items[i].name != 'Aged Brie') {
         if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-          if (items[i].quality > 0) {
-            if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
-              items[i].quality = items[i].quality - 1 //'Aged Brie', 'Backstage passes to a TAFKAL80ETC concert'
-            }
-          }
         } else {//'Backstage passes to a TAFKAL80ETC concert'
           items[i].quality = items[i].quality - items[i].quality
         }
@@ -65,6 +69,6 @@ function update_quality() {
           items[i].quality = items[i].quality + 1
         }
       }
-    }
+    
   }
 }
