@@ -29,6 +29,9 @@ function update_backstage(backstage) {
   backstage.quality++;
   if (days <= 10) {
     backstage.quality++;
+    if (days <= 5 ) {
+      backstage.quality++;
+    }
   }
 }
 function update_quality(item) {
