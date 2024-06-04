@@ -33,12 +33,12 @@ function update_aged_brie(brie) {
       brie.quality++;
   }
 }
-function updateRegularItem(item) {
+function updateRegularItem(item, degrationRate=1) {
   if (isQualityPositive(item)) { 
-    item.quality--;
+    item.quality-=degrationRate;
     if (is_expired(item)) {
       if (isQualityPositive(item)) { 
-        item.quality--;
+        item.quality-=degrationRate;
     }
     }
 }
@@ -73,12 +73,7 @@ function updateConjured(item) {
   if (!item.name.startsWith('Conjured')) {
     return;
   }
-  if (isQualityPositive(item)) {
-    item.quality--;
-    if (isQualityPositive(item)) {
-      item.quality--;
-    }
-  }
+  updateRegularItem(item, 2);
 }
 function updateQualityAndSellIn(item) {
   const name = item.name;
