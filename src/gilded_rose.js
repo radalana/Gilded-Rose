@@ -18,7 +18,13 @@ function decrease_days(item) {
 }
 function is_expired(item) {
   return item.sell_in < 0;
-} 
+}
+function isQualityMax(item) {
+  return item.quality >= 50;
+}
+function isQualityPositive(item) {
+  return item.quality > 0;
+}
 function update_aged_brie(brie) {
   if (!brie.name.startsWith('Aged Brie')) {
     return;
@@ -28,9 +34,7 @@ function update_aged_brie(brie) {
   }
   decrease_days(brie);
 }
-function isQualityMax(item) {
-  return item.quality >= 50;
-}
+
 function update_backstage(backstage) {
   if (!backstage.name.startsWith('Backstage passes')) {
     return;
@@ -69,10 +73,10 @@ function updateQualityAndSellIn(item) {
       update_backstage(item);
       return;
   }
-  if (item.quality > 0) { 
+  if (isQualityPositive(item)) { 
       item.quality--;
       if (is_expired(item)) {
-        if (item.quality > 0) { 
+        if (isQualityPositive(item)) { 
           item.quality--;
       }
       }
