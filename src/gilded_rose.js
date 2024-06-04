@@ -21,6 +21,14 @@ function update_aged_brie(brie) {
       brie.quality++;
   }
 }
+function update_backstage(backstage) {
+  if (!backstage.name.startsWith('Backstage passes')) {
+    return;
+  }
+  const days = backstage.sellBy;
+  backstage.quality++;
+
+}
 function decrease_quality(item) {
   const name = item.name;
   const sellBy = item.sell_in;
@@ -30,6 +38,10 @@ function decrease_quality(item) {
   }
   if (name.startsWith('Aged Brie')) {
       update_aged_brie(item);
+      return;
+  }
+  if (name.startsWith('Backstage passes')) {
+      update_backstage(item);
       return;
   }
   if (item.quality > 0) { 
@@ -45,39 +57,11 @@ function decrease_quality(item) {
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
-    if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            decrease_quality(items[i]);
-      
-    } else { //'Aged Brie' OR 'Backstage passes to a TAFKAL80ETC concert'
-        items[i].quality = items[i].quality + 1 //increase quality 
-        if (items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-          if (items[i].sell_in < 11) { // up 10th day
-            if (items[i].quality < 50) { //if less than 50 then inrease
-              items[i].quality = items[i].quality + 1
-            }
-          }
-          if (items[i].sell_in < 6) { //if left 5 days
-            if (items[i].quality < 50) { //check if max 50
-              items[i].quality = items[i].quality + 1 
-            }
-          }
-        }
-      // 50 max
-    }
+    
+      decrease_quality(items[i]);
+    
     if (items[i].name != 'Sulfuras, Hand of Ragnaros') {
       items[i].sell_in = items[i].sell_in - 1; //by all item decrease sell in days
     }
-    
-      if (items[i].name != 'Aged Brie') {
-        if (items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        } else {//'Backstage passes to a TAFKAL80ETC concert'
-          items[i].quality = items[i].quality - items[i].quality
-        }
-      } else { //Agied Brie after sell in day
-        if (items[i].quality < 50) {
-          items[i].quality = items[i].quality + 1
-        }
-      }
-    
   }
 }
