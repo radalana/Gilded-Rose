@@ -94,7 +94,7 @@ describe("Gilded Rose", function() {
 
   
   it("update_aged_brie funtion", function() {
-    items = [new Item("Aged Brie", 0, 49) ];
+    items = [new Item('Aged Brie', 0, 49)];
     update_aged_brie(items[0]);
     expect(items[0].quality).toEqual(50);
   });
