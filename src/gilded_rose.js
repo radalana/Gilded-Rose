@@ -74,16 +74,15 @@ function updateQualityAndSellIn(item) {
   const name = item.name;
   if (name.startsWith('Sulfuras')) {
       return;
-  }
-  if (name.startsWith('Aged Brie')) {
+  }else if (name.startsWith('Aged Brie')) {
       update_aged_brie(item);
       return;
-  }
-  if (name.startsWith('Backstage passes')) {
+  }else if (name.startsWith('Backstage passes')) {
       update_backstage(item);
       return;
+  }else {
+    updateRegularItem(item);
   }
-  updateRegularItem(item);
   decrease_days(item);
 }
 function update() { 
