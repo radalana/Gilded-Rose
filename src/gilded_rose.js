@@ -21,16 +21,26 @@ function update_aged_brie(brie) {
       brie.quality++;
   }
 }
+function isQualityMax(item) {
+  return item.quality >= 50;
+}
 function update_backstage(backstage) {
   if (!backstage.name.startsWith('Backstage passes')) {
     return;
   }
   const days = backstage.sell_in;
-  backstage.quality++;
-  if (days <= 10) {
-    backstage.quality++;
-    if (days <= 5 ) {
+  if (!isQualityMax(backstage)) {
       backstage.quality++;
+  }
+  
+  if (days <= 10) {
+    if (!isQualityMax(backstage)) {
+      backstage.quality++;
+  }
+    if (days <= 5 ) {
+      if (!isQualityMax(backstage)) {
+        backstage.quality++;
+    }
     }
   }
 }
