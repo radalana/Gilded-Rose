@@ -16,6 +16,9 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 function decrease_days(item) {
     item.sell_in--;
 }
+function is_expired(item) {
+  return item.sell_in < 0;
+} 
 function update_aged_brie(brie) {
   if (!brie.name.startsWith('Aged Brie')) {
     return;
@@ -33,7 +36,7 @@ function update_backstage(backstage) {
     return;
   }
   const days = backstage.sell_in;
-  if (days <= 0) {
+  if (is_expired(backstage) || days == 0) {
       backstage.quality = 0;
       return;
   }
@@ -55,8 +58,6 @@ function update_backstage(backstage) {
 }
 function updateQualityAndSellIn(item) {
   const name = item.name;
-  const sellBy = item.sell_in;
-
   if (name.startsWith('Sulfuras')) {
       return;
   }
@@ -70,7 +71,7 @@ function updateQualityAndSellIn(item) {
   }
   if (item.quality > 0) { 
       item.quality--;
-      if (sellBy < 0) {
+      if (is_expired(item)) {
         if (item.quality > 0) { 
           item.quality--;
       }
