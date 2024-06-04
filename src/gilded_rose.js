@@ -23,7 +23,7 @@ function update_aged_brie(brie) {
   if (brie.quality < 50) {
       brie.quality++;
   }
-  
+  decrease_days(brie);
 }
 function isQualityMax(item) {
   return item.quality >= 50;
@@ -51,6 +51,7 @@ function update_backstage(backstage) {
     }
     }
   }
+  decrease_days(backstage);
 }
 function update_quality(item) {
   const name = item.name;
@@ -75,11 +76,11 @@ function update_quality(item) {
       }
       }
   }
-  
+  decrease_days(item);
 }
 function update() { 
   for (var i = 0; i < items.length; i++) {
       update_quality(items[i]);
-      decrease_days(items[i]);
+      
   }
 }
