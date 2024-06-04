@@ -148,5 +148,10 @@ describe("Gilded Rose", function() {
     update();
     expect(items[0].quality).toEqual(2);
   });
+  it("Conjured items quality does not go below 0", function() {
+    items = [new Item("Conjured Mana Cake", 0, 1)];
+    update();
+    expect(items[0].quality).toEqual(0);
+  });
 });
 
