@@ -34,6 +34,16 @@ function update_aged_brie(brie) {
   }
   decrease_days(brie);
 }
+function updateRegularItem(item) {
+  if (isQualityPositive(item)) { 
+    item.quality--;
+    if (is_expired(item)) {
+      if (isQualityPositive(item)) { 
+        item.quality--;
+    }
+    }
+}
+}
 
 function update_backstage(backstage) {
   if (!backstage.name.startsWith('Backstage passes')) {
@@ -73,14 +83,7 @@ function updateQualityAndSellIn(item) {
       update_backstage(item);
       return;
   }
-  if (isQualityPositive(item)) { 
-      item.quality--;
-      if (is_expired(item)) {
-        if (isQualityPositive(item)) { 
-          item.quality--;
-      }
-      }
-  }
+  updateRegularItem(item);
   decrease_days(item);
 }
 function update() { 
