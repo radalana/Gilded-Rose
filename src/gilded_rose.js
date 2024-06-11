@@ -34,14 +34,16 @@ function update_aged_brie(brie) {
   }
 }
 function updateRegularItem(item, degrationRate=1) {
-  if (isQualityPositive(item)) { 
+  if (item.quality - degrationRate < 0) {
+      item.quality = 0;
+      return;
+  } 
     item.quality-=degrationRate;
     if (is_expired(item)) {
       if (isQualityPositive(item)) { 
         item.quality-=degrationRate;
     }
     }
-}
 }
 
 function update_backstage(backstage) {
@@ -73,7 +75,12 @@ function updateConjured(item) {
   if (!item.name.startsWith('Conjured')) {
     return;
   }
-  updateRegularItem(item, 2);
+  const degrationRate = 2;
+  if (item.quality - degrationRate < 0) {
+      item.quality = 0;
+  }else {
+    updateRegularItem(item, degrationRate);
+  }
 }
 function updateQualityAndSellIn(item) {
   const name = item.name;
