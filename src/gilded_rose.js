@@ -46,27 +46,33 @@ function updateRegularItem(item, degrationRate=1) {
     }
 }
 
+function isBacstageObject(item) {
+  return item.name.startsWith('Backstage passes');
+}
+function isExpiredOrZeroDays(backstage) {
+  return is_expired(backstage) || backstage.sell_in == 0;
+}
+
+function increaseQuality(item) {
+  if (!isQualityMax(backstage)) {
+    backstage.quality++;
+}
+}
 function update_backstage(backstage) {
-  if (!backstage.name.startsWith('Backstage passes')) {
+  if (!isBacstageObject(backstage)) {
     return;
   }
   const days = backstage.sell_in;
-  if (is_expired(backstage) || days == 0) {
+  if (isExpiredOrZeroDays(backstage)) {
       backstage.quality = 0;
       return;
   }
-  if (!isQualityMax(backstage)) {
-      backstage.quality++;
-  }
   
+  increaseQuality(backstage);
   if (days <= 10) {
-    if (!isQualityMax(backstage)) {
-      backstage.quality++;
-  }
+   increaseQuality(backstage);
     if (days <= 5 ) {
-      if (!isQualityMax(backstage)) {
-        backstage.quality++;
-    }
+      increaseQuality(backstage);
     }
   }
 }
